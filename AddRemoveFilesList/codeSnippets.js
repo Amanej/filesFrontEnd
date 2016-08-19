@@ -67,10 +67,13 @@ var updateDOM = function(_f,i) {
     console.dir(event);
     console.log("Order: "+event.target.attributes[1].value);
     var _order = event.target.attributes[1].value;
+    //console.log(typeof _order);
+    var _ordI = parseInt(_order);
     // remove from currentfiles
     currentfiles.splice(_order,1);
     console.dir(currentfiles);
     // remove from DOM
+    filesList.removeChild(filesList.childNodes[_ordI]);
   });
 
   // Add list item to ul
