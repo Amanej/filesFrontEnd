@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+    </head>
+
+<style>
+#dropZone {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  text-align: center;
+  padding: 100px;
+}
+</style>
+
+<body>
+
+<div id="dropZone">
+Drag files here
+</div>
+
+<ul id="filesDropped">
+</ul>
+
+</body>
+<script>
+var dropZone = document.getElementById("dropZone");
+var myfiles = [];
+
+dropZone.addEventListener("dragover", function(event) {
+  event.preventDefault();
+  //console.dir(event);
+});
+
+dropZone.addEventListener("drop", function(event) {
+  event.preventDefault();
+  console.dir(event);
+  console.log(event.dataTransfer.files);
+  listFiles(event.dataTransfer.files);
+});
+
+var filesDropped = document.getElementById("filesDropped");
+function listFiles(_files) {
+  for(var i = 0;i < _files.length;i++) {
+    console.log(_files[i].name);
+    var li = document.createElement("li");
+    var _name = document.createTextNode(_files[i].name);
+    li.appendChild(_name);
+    filesDropped.appendChild(li);
+    myfiles.push(_files[i]);
+  }
+}
+
+</script>
+
+</html>
